@@ -2,15 +2,28 @@ import React, { useState } from "react";
 import { FiMail, FiUser, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 
 const Register = () => {
-  const [form, setForm] = useState({ username: "", email: "", password: "" });
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+    role: "",
+  });
+
+  const [Error, setError] = useState({
+    nameError: "border-gray-300",
+    emailError: "border-gray-300",
+    passError: "border-gray-300",
+    emailError: "border-gray-300",
+    rollError: "border-gray-300",
+  });
+
   const [showPassword, setShowPassword] = useState(false);
 
-
-const onSubmit = (e) => {
-  e.preventDefault(); 
-};
+  const onSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
-     <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-sm p-8 space-y-6 bg-white rounded-2xl shadow-lg ring-1 ring-gray-200">
         <div className="flex flex-col items-center">
           <h1 className="text-2xl font-bold text-gray-900">Create account</h1>
@@ -21,9 +34,12 @@ const onSubmit = (e) => {
           {/* Username */}
           <label className="block">
             <span className="sr-only">Username</span>
-            <div className="flex items-center gap-2 px-3 py-2 rounded-md border border-gray-200 bg-gray-50">
+            <div
+              className={`flex items-center gap-2 px-3 py-2 rounded-md border ${Error.nameError} bg-gray-50`}
+            >
               <FiUser className="text-gray-500" />
               <input
+                onChange={(e) => setForm(e.target.value)}
                 name="username"
                 placeholder="Username"
                 className="w-full bg-transparent outline-none text-gray-900 placeholder-gray-400"
@@ -34,7 +50,9 @@ const onSubmit = (e) => {
           {/* Email */}
           <label className="block">
             <span className="sr-only">Email</span>
-            <div className="flex items-center gap-2 px-3 py-2 rounded-md border border-gray-200 bg-gray-50">
+            <div
+              className={`flex items-center gap-2 px-3 py-2 rounded-md border ${Error.emailError} bg-gray-50`}
+            >
               <FiMail className="text-gray-500" />
               <input
                 name="email"
@@ -48,7 +66,9 @@ const onSubmit = (e) => {
           {/* Password */}
           <label className="block">
             <span className="sr-only">Password</span>
-            <div className="flex items-center gap-2 px-3 py-2 rounded-md border border-gray-200 bg-gray-50">
+            <div
+              className={`flex items-center gap-2 px-3 py-2 rounded-md border ${Error.passError} bg-gray-50`}
+            >
               <FiLock className="text-gray-500" />
               <input
                 name="password"
