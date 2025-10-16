@@ -5,38 +5,33 @@ const Register = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
-  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    // Placeholder: replace with real submit logic
-    console.log("Register", form);
-    alert(`Registered ${form.username} (${form.email})`);
-  };
-
+const onSubmit = (e) => {
+  e.preventDefault(); 
+};
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-sm p-8 space-y-6 bg-white rounded-2xl shadow-lg ring-1 ring-gray-200">
         <div className="flex flex-col items-center">
           <h1 className="text-2xl font-bold text-gray-900">Create account</h1>
         </div>
 
+        {/* 🔹 Form Section */}
         <form onSubmit={onSubmit} className="space-y-6">
+          {/* Username */}
           <label className="block">
             <span className="sr-only">Username</span>
             <div className="flex items-center gap-2 px-3 py-2 rounded-md border border-gray-200 bg-gray-50">
               <FiUser className="text-gray-500" />
               <input
                 name="username"
-                value={form.username}
-                onChange={onChange}
-                required
                 placeholder="Username"
-                className="w-full bg-transparent outline-none text-gray-900 dark:text-gray-100 placeholder-gray-400"
+                className="w-full bg-transparent outline-none text-gray-900 placeholder-gray-400"
               />
             </div>
           </label>
 
+          {/* Email */}
           <label className="block">
             <span className="sr-only">Email</span>
             <div className="flex items-center gap-2 px-3 py-2 rounded-md border border-gray-200 bg-gray-50">
@@ -44,15 +39,13 @@ const Register = () => {
               <input
                 name="email"
                 type="email"
-                value={form.email}
-                onChange={onChange}
-                required
-                placeholder="Enter you email"
-                className="w-full bg-transparent outline-none text-gray-900 dark:text-gray-100 placeholder-gray-400"
+                placeholder="Enter your email"
+                className="w-full bg-transparent outline-none text-gray-900 placeholder-gray-400"
               />
             </div>
           </label>
 
+          {/* Password */}
           <label className="block">
             <span className="sr-only">Password</span>
             <div className="flex items-center gap-2 px-3 py-2 rounded-md border border-gray-200 bg-gray-50">
@@ -60,9 +53,6 @@ const Register = () => {
               <input
                 name="password"
                 type={showPassword ? "text" : "password"}
-                value={form.password}
-                onChange={onChange}
-                required
                 placeholder="Create a password"
                 className="w-full bg-transparent outline-none text-gray-900 placeholder-gray-400"
               />
@@ -77,14 +67,16 @@ const Register = () => {
             </div>
           </label>
 
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-black text-white font-medium  hover:bg-gray-900"
+            className="w-full py-2 px-4 bg-black text-white font-medium hover:bg-gray-900"
           >
             Register
           </button>
         </form>
 
+        {/* Footer */}
         <div className="text-center text-sm text-gray-600">
           Already have an account?{" "}
           <a href="#" className="text-indigo-600 font-medium">
