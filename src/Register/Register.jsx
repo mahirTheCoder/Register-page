@@ -19,6 +19,20 @@ const Register = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (!form.username) {
+      setError((prev) => ({ ...prev, nameError: "border-red-500" }));
+    }
+    if (!form.email) {
+      setError((prev) => ({ ...prev, emailError: "border-red-500" }));
+    }
+    if (!form.password) {
+      setError((prev) => ({ ...prev, passError: "border-red-500" }));
+    }
+
+    // ------------api intrigations------------
 
 
   return (
