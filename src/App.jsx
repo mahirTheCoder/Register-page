@@ -7,12 +7,14 @@ import {
 } from "react-router";
 import Register from "./Pages/Register";
 import { ToastContainer } from "react-toastify";
+import Login from "./Pages/Login";
 
 const App = () => {
   const Router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
         <Route path="/" element={<Register />} />
+        <Route path="/Login" element={<Login />} />
       </Route>
     )
   );

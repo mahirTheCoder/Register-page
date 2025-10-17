@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { FiMail, FiUser, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Bounce, toast } from "react-toastify";
 
 const Register = () => {
@@ -32,6 +32,10 @@ const Register = () => {
       setError((prev) => ({ ...prev, passError: "border-red-500" }));
     }
 
+    // -----------use navigate -------------
+
+    const navigate = useNavigate();
+
     // ------------api intrigations------------
 
     axios
@@ -41,6 +45,8 @@ const Register = () => {
         password: form.password,
       })
       .then((res) => {
+        navigate("/Login");
+
         toast.success("Register Success", {
           position: "top-right",
           autoClose: 5000,
@@ -164,7 +170,7 @@ const Register = () => {
         {/* Footer */}
         <div className="text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link to={'/Login'} className="text-indigo-600 font-medium">
+          <Link to={"/Login"} className="text-indigo-600 font-medium">
             Login
           </Link>
         </div>
