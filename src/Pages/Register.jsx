@@ -41,7 +41,7 @@ const Register = () => {
         password: form.password,
       })
       .then((res) => {
-        toast.success("Success", {
+        toast.success("Register Success", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -164,7 +164,7 @@ const Register = () => {
         {/* Footer */}
         <div className="text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link to={'/'} className="text-indigo-600 font-medium">
+          <Link to={'/Login'} className="text-indigo-600 font-medium">
             Login
           </Link>
         </div>
