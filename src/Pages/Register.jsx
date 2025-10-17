@@ -18,6 +18,7 @@ const Register = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate()
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -32,10 +33,6 @@ const Register = () => {
       setError((prev) => ({ ...prev, passError: "border-red-500" }));
     }
 
-    // -----------use navigate -------------
-
-    const navigate = useNavigate();
-
     // ------------api intrigations------------
 
     axios
@@ -45,9 +42,8 @@ const Register = () => {
         password: form.password,
       })
       .then((res) => {
-        navigate("/Login");
-
-        toast.success("Register Success", {
+        navigate('./Login')
+        toast.success("Success", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -170,7 +166,7 @@ const Register = () => {
         {/* Footer */}
         <div className="text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link to={"/Login"} className="text-indigo-600 font-medium">
+          <Link to={'/Login'} className="text-indigo-600 font-medium">
             Login
           </Link>
         </div>

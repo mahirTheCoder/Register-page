@@ -7,17 +7,23 @@ import { Bounce, toast } from "react-toastify";
 const Login = () => {
   const [form, setForm] = useState({
     username: "",
-    email: "",
     password: "",
   });
 
   const [Error, setError] = useState({
     nameError: "border-gray-300",
-    emailError: "border-gray-300",
     passError: "border-gray-300",
   });
 
   const [showPassword, setShowPassword] = useState(false);
+
+  // ---------axios -----------
+  const options = {
+    method: "POST",
+    url: "https://api.freeapi.app/api/v1/users/login",
+    headers: { accept: "application/json", "content-type": "application/json" },
+    data: form
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -25,53 +31,10 @@ const Login = () => {
     if (!form.username) {
       setError((prev) => ({ ...prev, nameError: "border-red-500" }));
     }
-    if (!form.email) {
-      setError((prev) => ({ ...prev, emailError: "border-red-500" }));
-    }
+
     if (!form.password) {
       setError((prev) => ({ ...prev, passError: "border-red-500" }));
     }
-
-    // -----------use navigate -------------
-
-    const navigate = useNavigate();
-
-    // ------------api intrigations------------
-
-    axios
-      .post("https://api.freeapi.app/api/v1/users/register", {
-        username: form.username,
-        email: form.email,
-        password: form.password,
-      })
-      .then((res) => {
-        navigate("/Login");
-
-        toast.success("Register Success", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Bounce,
-        });
-      })
-      .catch((err) => {
-        toast.error("Enter your data please", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
-      });
   };
 
   return (
@@ -99,29 +62,6 @@ const Login = () => {
                 }}
                 name="username"
                 placeholder="Username"
-                className="w-full bg-transparent outline-none text-gray-900 placeholder-gray-400"
-              />
-            </div>
-          </label>
-
-          {/* Email */}
-          <label className="block">
-            <span className="sr-only">Email</span>
-            <div
-              className={`flex items-center gap-2 px-3 py-2 rounded-md border ${Error.emailError} bg-gray-50`}
-            >
-              <FiMail className="text-gray-500" />
-              <input
-                onChange={(e) => {
-                  setForm((prev) => ({ ...prev, email: e.target.value }));
-                  setError((prev) => ({
-                    ...prev,
-                    emailError: "border-gray-300",
-                  }));
-                }}
-                name="email"
-                type="email"
-                placeholder="Enter your email"
                 className="w-full bg-transparent outline-none text-gray-900 placeholder-gray-400"
               />
             </div>
@@ -169,8 +109,8 @@ const Login = () => {
 
         {/* Footer */}
         <div className="text-center text-sm text-gray-600">
-         Don't have an account?{" "}
-          <Link to={"/Register"} className="text-indigo-600 font-medium">
+          Don't have an account?{" "}
+          <Link to={"/"} className="text-indigo-600 font-medium">
             Register
           </Link>
         </div>
