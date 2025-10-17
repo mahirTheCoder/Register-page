@@ -1,27 +1,26 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { FiMail, FiUser, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
+import { Link } from "react-router";
+import { Bounce, toast } from "react-toastify";
 
 const Register = () => {
   const [form, setForm] = useState({
     username: "",
     email: "",
     password: "",
-    role: "",
   });
 
   const [Error, setError] = useState({
     nameError: "border-gray-300",
     emailError: "border-gray-300",
     passError: "border-gray-300",
-    emailError: "border-gray-300",
-    rollError: "border-gray-300",
   });
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-  };
+
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-sm p-8 space-y-6 bg-white rounded-2xl shadow-lg ring-1 ring-gray-200">
@@ -29,7 +28,6 @@ const Register = () => {
           <h1 className="text-2xl font-bold text-gray-900">Create account</h1>
         </div>
 
-        {/* 🔹 Form Section */}
         <form onSubmit={onSubmit} className="space-y-6">
           {/* Username */}
           <label className="block">
@@ -39,7 +37,13 @@ const Register = () => {
             >
               <FiUser className="text-gray-500" />
               <input
-                onChange={(e) => setForm(e.target.value)}
+                onChange={(e) => {
+                  setForm((prev) => ({ ...prev, username: e.target.value }));
+                  setError((prev) => ({
+                    ...prev,
+                    nameError: "border-gray-300",
+                  }));
+                }}
                 name="username"
                 placeholder="Username"
                 className="w-full bg-transparent outline-none text-gray-900 placeholder-gray-400"
@@ -55,6 +59,13 @@ const Register = () => {
             >
               <FiMail className="text-gray-500" />
               <input
+                onChange={(e) => {
+                  setForm((prev) => ({ ...prev, email: e.target.value }));
+                  setError((prev) => ({
+                    ...prev,
+                    emailError: "border-gray-300",
+                  }));
+                }}
                 name="email"
                 type="email"
                 placeholder="Enter your email"
@@ -71,6 +82,13 @@ const Register = () => {
             >
               <FiLock className="text-gray-500" />
               <input
+                onChange={(e) => {
+                  setForm((prev) => ({ ...prev, password: e.target.value }));
+                  setError((prev) => ({
+                    ...prev,
+                    passError: "border-gray-300",
+                  }));
+                }}
                 name="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Create a password"
@@ -99,9 +117,9 @@ const Register = () => {
         {/* Footer */}
         <div className="text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <a href="#" className="text-indigo-600 font-medium">
+          <Link to={'/'} className="text-indigo-600 font-medium">
             Login
-          </a>
+          </Link>
         </div>
       </div>
     </div>

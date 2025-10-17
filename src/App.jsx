@@ -1,6 +1,7 @@
 import React from 'react'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router'
 import Register from './Register/Register'
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
 
@@ -11,6 +12,7 @@ const Router = createBrowserRouter(createRoutesFromElements(
 
   return (
     <>
+     <ToastContainer />
     <RouterProvider router={Router}/>
     </>
   )
