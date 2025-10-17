@@ -34,6 +34,30 @@ const Register = () => {
 
     // ------------api intrigations------------
 
+    axios
+      .post("https://api.freeapi.app/api/v1/users/register", {
+        username: form.username,
+        email: form.email,
+        password: form.password,
+      })
+      .then((res) => {
+        toast.success("Success", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+      })
+      .catch((err) => {
+       
+        });
+      });
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
