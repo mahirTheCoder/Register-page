@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FiMail, FiUser, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from "react-router";
 import { Bounce, toast } from "react-toastify";
+import Cookies from 'js-cookie';
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -39,6 +40,8 @@ const Login = () => {
       axios.request(options)
       .then((res)=>{
         console.log(res.data.data.accessToken)
+        Cookies.set('Authorization', res.data.data.accessToken)
+
       })
       .catch((err)=>{console.log(err)});
 
