@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiMail, FiUser, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from "react-router";
 import { Bounce, toast } from "react-toastify";
@@ -17,15 +17,16 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  // ---------axios -----------
+// -=----------api ----------
   const options = {
     method: "POST",
     url: "https://api.freeapi.app/api/v1/users/login",
     headers: { accept: "application/json", "content-type": "application/json" },
-    data: form
+    data: form,
   };
 
-  const onSubmit = (e) => {
+
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     if (!form.username) {
@@ -35,6 +36,8 @@ const Login = () => {
     if (!form.password) {
       setError((prev) => ({ ...prev, passError: "border-red-500" }));
     }
+
+
   };
 
   return (
