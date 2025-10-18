@@ -27,15 +27,19 @@ const Login = () => {
 
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!form.username) {
-      setError((prev) => ({ ...prev, nameError: "border-red-500" }));
-    }
-
-    if (!form.password) {
-      setError((prev) => ({ ...prev, passError: "border-red-500" }));
-    }
+    try{
+      e.preventDefault();
+  
+      if (!form.username) {
+        setError((prev) => ({ ...prev, nameError: "border-red-500" }));
+      }
+  
+      if (!form.password) {
+        setError((prev) => ({ ...prev, passError: "border-red-500" }));
+      }
+        const { data } = await axios.request(options);
+        console.log(data)
+    }catch(err){console.log(err)}
 
 
   };
