@@ -17,7 +17,7 @@ const Login = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-
+const navigate = useNavigate()
   // -=----------api ----------
   const options = {
     method: "POST",
@@ -39,6 +39,7 @@ const Login = () => {
       };
       axios.request(options)
       .then((res)=>{
+        navigate('/')
         console.log(res.data.data.accessToken)
         Cookies.set('Authorization', res.data.data.accessToken)
 
@@ -123,7 +124,7 @@ const Login = () => {
         {/* Footer */}
         <div className="text-center text-sm text-gray-600">
           Don't have an account?{" "}
-          <Link to={"/"} className="text-indigo-600 font-medium">
+          <Link to={"/Register"} className="text-indigo-600 font-medium">
             Register
           </Link>
         </div>

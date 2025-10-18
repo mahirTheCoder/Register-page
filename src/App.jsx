@@ -8,12 +8,17 @@ import {
 import Register from "./Pages/Register";
 import { ToastContainer } from "react-toastify";
 import Login from "./Pages/Login";
+import Home from "./Home/Home";
+import Layout from "./Layout/Layout";
 
 const App = () => {
-  const Router = createBrowserRouter(
+  const myRouter = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/" element={<Register />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />}/>
+        </Route>
+        <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
       </Route>
     )
@@ -22,7 +27,7 @@ const App = () => {
   return (
     <>
       <ToastContainer />
-      <RouterProvider router={Router} />
+      <RouterProvider router={myRouter} />
     </>
   );
 };
