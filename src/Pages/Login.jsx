@@ -17,7 +17,7 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-// -=----------api ----------
+  // -=----------api ----------
   const options = {
     method: "POST",
     url: "https://api.freeapi.app/api/v1/users/login",
@@ -25,23 +25,26 @@ const Login = () => {
     data: form,
   };
 
-
   const onSubmit = async (e) => {
-    try{
+    try {
       e.preventDefault();
-  
+
       if (!form.username) {
         setError((prev) => ({ ...prev, nameError: "border-red-500" }));
       }
-  
+
       if (!form.password) {
         setError((prev) => ({ ...prev, passError: "border-red-500" }));
-      }
-        const { data } = await axios.request(options);
-        console.log(data)
-    }catch(err){console.log(err)}
+      };
+      axios.request(options)
+      .then((res)=>{
+        console.log(res.data.data.accessToken)
+      })
+      .catch((err)=>{console.log(err)});
 
-
+    }catch (err) {
+      console.log(err);
+    }
   };
 
   return (
